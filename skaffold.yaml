@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+metadata:
+  name: furniture_stack
+build:
+  artifacts:
+    - image: frontend_stack
+      context: frontend/
+      docker:
+        dockerfile: Dockerfile
+    - image: backend_stack
+      context: backend/
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml
